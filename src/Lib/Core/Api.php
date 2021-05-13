@@ -1,5 +1,5 @@
 <?php
-namespace keli\opensdk\Lib\Core;
+namespace Lib\Core;
 
 use Hanson\Foundation\AbstractAPI;
 

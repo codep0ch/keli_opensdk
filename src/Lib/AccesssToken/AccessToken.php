@@ -1,7 +1,7 @@
 <?php
 
 
-namespace keli\opensdk\Lib\AccessToken;
+namespace Lib\AccessToken;
 
 
 use Hanson\Foundation\AbstractAccessToken;
