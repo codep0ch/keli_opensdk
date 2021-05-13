@@ -10,10 +10,10 @@
     ],
     "autoload": {
         "psr-4": {
-            "keli\\opensdk\\": "src/"
+            "Keli\\OpenSDK\\": "src/"
         }
     },
     "require": {
-        "hanson/foundation-sdk": "^2.0"
+        "hanson/foundation-sdk": "^5.0"
     }
 }
