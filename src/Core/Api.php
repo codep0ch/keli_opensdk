@@ -9,24 +9,27 @@ class Api extends  AbstractAPI
     /**
      * @var AccessToken
      */
-    public $accessToken;
     private $mch_id;
     private $appId;
     private $appSecret;
     private $inner;
     const API = 'http://api.kelimx.com/cgi-bin/';
     const INNER_API = 'http://inner.api.kelimx.com/cgi-bin/';
-    public function __construct($mch_id, $appId, $appSecret, $inner = false)
+    public function __construct($mch_id = null, $appId, $appSecret, $inner = false)
     {
         $this->mch_id = $mch_id;
         $this->appId = $appId;
         $this->appSecret = $appSecret;
         $this->inner = $inner;
+        if($inner && empty($mch_id)){
+            throw new \Exception('mch_id cannot be empty in Intranet mode');
+        }
     }
     function request($url,$data = array(),$method='post'){
         $header = [];
         if($this->inner){
             $url = self::INNER_API.$url;
+            $data['mch_id'] = $this->mch_id;
         }else{
             $accessToken = new AccessToken($this->mch_id, $this->appId,$this->appSecret, $this->inner);
             $url = self::API.$url;

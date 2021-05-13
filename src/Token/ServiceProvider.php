@@ -20,6 +20,9 @@ class ServiceProvider implements ServiceProviderInterface
     {
         $pimple['access_token'] = function ($pimple) {
             $config = $pimple->getConfig();
+            if(!empty($config['Inner']) && $config['Inner']){
+                $config['mch_id'] = '';
+            }
             return new AccessToken($config['mch_id'], $config['appId'], $config['appSecret'], $config['Inner']);
         };
     }
