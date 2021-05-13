@@ -28,8 +28,9 @@ class Api extends  AbstractAPI
         if($this->inner){
             $url = self::INNER_API.$url;
         }else{
+            $accessToken = new AccessToken($this->mch_id, $this->appId,$this->appSecret, $this->inner);
             $url = self::API.$url;
-            $header = ['x-access-token' => '123'];
+            $header = ['x-access-token' => $accessToken->getToken()];
         }
         if($method=='post'){
             return $this->curl_post($url, $data, $header);
