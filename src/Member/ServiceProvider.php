@@ -20,7 +20,7 @@ class ServiceProvider implements ServiceProviderInterface
     {
         $pimple['member'] = function ($pimple) {
             $config = $pimple->getConfig();
-            if(!empty($config['Inner']) && $config['Inner']){
+            if(empty($config['Inner']) || !$config['Inner']){
                 $config['mch_id'] = '';
             }
             return new Member($config['mch_id'], $config['appId'], $config['appSecret']);
