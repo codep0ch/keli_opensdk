@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Lib\AccessToken;
+namespace keli\opensdk\Lib\AccessToken;
 
 
 use Pimple\Container;
