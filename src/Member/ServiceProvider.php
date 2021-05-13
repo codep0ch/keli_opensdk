@@ -23,6 +23,10 @@ class ServiceProvider implements ServiceProviderInterface
             if(empty($config['Inner']) || !$config['Inner']){
                 $config['mch_id'] = '';
             }
+            if($config['Inner']){
+                $config['appId'] = '';
+                $config['appSecret'] = '';
+            }
             return new Member($config['mch_id'], $config['appId'], $config['appSecret'], $config['Inner']);
         };
     }

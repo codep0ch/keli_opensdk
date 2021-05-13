@@ -1,9 +1,15 @@
 ```php
+//外网调用配置
 $configs = [
     'appId' => 'kelikeji',
     'appSecret' => 'kelikeji',
-    'debug' => true,
-    'Inner' => false
+    'debug' => true
+];
+//内网调用配置
+$configs = [
+    'mch_id' => 31,
+    'Inner' => true,
+    'debug' => true
 ];
 $dispatch = new \Keli\OpenSDK\Dispatch($configs);
 /**
