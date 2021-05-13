@@ -2,7 +2,7 @@
 namespace Keli\OpenSDK\Core;
 
 use Hanson\Foundation\AbstractAPI;
-use Keli\OpenSDK\AccessToken\AccessToken;
+use Keli\OpenSDK\Token\AccessToken;
 
 class Api extends  AbstractAPI
 {

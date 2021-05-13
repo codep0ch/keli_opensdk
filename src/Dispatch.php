@@ -7,15 +7,15 @@ use Hanson\Foundation\Foundation;
 /**
  * Class Dispatch
  * @package opensdk
- * @property \Keli\OpenSDK\AccessToken\AccessToken    $access_token
+ * @property \Keli\OpenSDK\Token\AccessToken    $access_token
  * @property \Keli\OpenSDK\Member\Member    $member
  */
 class Dispatch extends Foundation
 {
 
     protected $providers = [
-        AccessToken\ServiceProvider::class,
-        Member\Member::class
+        Token\ServiceProvider::class,
+        Member\ServiceProvider::class
     ];
 
     public function createAuthorizer($authToken)

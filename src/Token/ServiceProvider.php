@@ -1,5 +1,5 @@
 <?php
-namespace Keli\OpenSDK\AccessToken;
+namespace Keli\OpenSDK\Token;
 
 
 use Pimple\Container;
@@ -19,7 +19,8 @@ class ServiceProvider implements ServiceProviderInterface
     public function register(Container $pimple)
     {
         $pimple['access_token'] = function ($pimple) {
-            return new AccessToken($pimple['config']['mch_id'], $pimple['config']['appId'], $pimple['config']['secret']);
+            $config = $pimple->getConfig();
+            return new AccessToken($config['mch_id'], $config['appId'], $config['secret']);
         };
     }
 }
