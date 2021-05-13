@@ -1,5 +1,5 @@
 <?php
-namespace keli\opensdk\Lib\Core;
+namespace keli\opensdk\Lib\Member;
 
 
 use keli\opensdk\Lib\Core\Api;

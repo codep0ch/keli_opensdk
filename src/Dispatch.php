@@ -2,8 +2,8 @@
 namespace keli\opensdk;
 
 
-use keli\opensdk\AccessToken\AccessToken;
-use keli\opensdk\AccessToken\ServiceProvider;
+use keli\opensdk\Lib\AccessToken\AccessToken;
+use keli\opensdk\Lib\AccessToken\ServiceProvider;
 
 /**
  * Class Dispatch
