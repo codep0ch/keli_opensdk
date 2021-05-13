@@ -1,0 +1,13 @@
+{
+    "name": "keli/opensdk",
+    "description": "nothing",
+    "authors": [
+        {
+            "name": "唐启翔",
+            "email": "17297043@qq.com"
+        }
+    ],
+    "require": {
+        "hanson/foundation-sdk": "^5.0"
+    }
+}
