@@ -1,7 +1,8 @@
 <?php
-namespace Lib\Core;
+namespace Keli\OpenSDK\Core;
 
 use Hanson\Foundation\AbstractAPI;
+use Keli\OpenSDK\AccessToken\AccessToken;
 
 class Api extends  AbstractAPI
 {
