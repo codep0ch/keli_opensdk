@@ -1,8 +1,8 @@
 <?php
-namespace opensdk\Lib;
+namespace keli\opensdk\Lib;
 
 
-use opensdk\Api;
+use keli\opensdk\Api;
 
 class Member extends Api
 {

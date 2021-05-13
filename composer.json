@@ -10,7 +10,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "opensdk\\Dispatch\\": "src/"
+            "keli\\opensdk\\": "src/"
         }
     },
     "require": {

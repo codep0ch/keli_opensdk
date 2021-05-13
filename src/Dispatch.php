@@ -1,7 +1,7 @@
 <?php
-namespace opensdk;
+namespace keli\opensdk;
 
-use opensdk\Lib\Member;
+use keli\opensdk\Lib\Member;
 
 /**
  * Class Dispatch
