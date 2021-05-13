@@ -21,6 +21,8 @@ class AccessToken extends AbstractAccessToken
 
     protected $inner;
 
+    protected $tokenJsonKey = 'access_token';
+
     public function __construct($mch_id, $appId, $appSecret, $inner)
     {
         $this->mch_id = $mch_id;
@@ -49,7 +51,7 @@ class AccessToken extends AbstractAccessToken
         //Implement getTokenFromServer() method.
         $api = "http://123.57.15.217:82/cgi-bin/token?appId={$this->appId}&appSecret={$this->secret}";
         $x_auth_token = $this->cache->fetch("x-access-token-{$this->mch_id}");
-        if(is_null($x_auth_token)){
+        if(empty($x_auth_token)){
             //初始化
             $ch = curl_init();
             //设置选项，包括URL
@@ -62,10 +64,13 @@ class AccessToken extends AbstractAccessToken
             curl_close($ch);
 
             $result = json_decode($output, true);
-            $x_auth_token = $result->result->access_token;
+            if($result['code'] == 400){
+                throw new \Exception($result['msg']);
+            }
+            $x_auth_token = $result['result']['access_token'];
             $this->cache->save("x-access-token-{$this->mch_id}", $x_auth_token,7000);
         }
-        return $x_auth_token;
+        return ['access_token' => $x_auth_token];
     }
 
     /**
@@ -77,6 +82,8 @@ class AccessToken extends AbstractAccessToken
     public function checkTokenResponse($result)
     {
         //Implement checkTokenResponse() method.
-        throw new RuntimeException('token error');
+        if (empty($result)){
+            throw new \Exception('token error');
+        }
     }
 }
