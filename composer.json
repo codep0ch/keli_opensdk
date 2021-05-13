@@ -7,6 +7,11 @@
             "email": "17297043@qq.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "opensdk\\Dispatch\\": "src/"
+        }
+    },
     "require": {
         "hanson/foundation-sdk": "^5.0"
     }
