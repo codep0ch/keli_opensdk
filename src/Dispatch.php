@@ -1,25 +1,24 @@
 <?php
 namespace keli\opensdk;
 
-use keli\opensdk\Lib\Member;
+
+use keli\opensdk\AccessToken\AccessToken;
 
 /**
  * Class Dispatch
  * @package opensdk
- * @method array getToken($params)
+ * @property AccessToken    $access_token
  */
 class Dispatch extends \Hanson\Foundation\Foundation
 {
 
-    private $member;
+    protected $providers = [
+        \keli\opensdk\AccessToken\ServiceProvider::class
+    ];
 
-    public function __construct($config)
+    public function createAuthorizer($authToken)
     {
-        parent::__construct($config);
-        $this->member = new Member($config['mch_id'], $config['appId'], $config['appSecret']);
-    }
-
-    public function __call($name, $arguments){
-        return $this->member->{$name}(...$arguments);
+        $this->access_token->setAuthToken($authToken);
+        return $this;
     }
 }
