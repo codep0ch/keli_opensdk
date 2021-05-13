@@ -3,6 +3,7 @@ namespace keli\opensdk;
 
 
 use keli\opensdk\AccessToken\AccessToken;
+use keli\opensdk\AccessToken\ServiceProvider;
 
 /**
  * Class Dispatch
@@ -13,7 +14,7 @@ class Dispatch extends \Hanson\Foundation\Foundation
 {
 
     protected $providers = [
-        \keli\opensdk\AccessToken\ServiceProvider::class
+        ServiceProvider::class
     ];
 
     public function createAuthorizer($authToken)
