@@ -21,6 +21,7 @@ class Api extends  AbstractAPI
         $this->appId = $appId;
         $this->appSecret = $appSecret;
         $this->inner = $inner;
+        echo "商户好:".$mch_id;
         if($inner && empty($mch_id)){
             throw new \Exception('mch_id cannot be empty in Intranet mode');
         }
