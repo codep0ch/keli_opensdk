@@ -30,9 +30,12 @@ class Api extends  AbstractAPI
         }else{
             $accessToken = new AccessToken($this->mch_id, $this->appId,$this->appSecret, $this->inner);
             $url = self::API.$url;
-            $header = ['x-access-token' => $accessToken->getToken()];
+            $header = [
+                'x-access-token:'.$accessToken->getToken()
+            ];
         }
         if($method=='post'){
+            $header[] = 'Content-Type: application/json; charset=utf-8';
             return $this->curl_post($url, $data, $header);
         }else{
             return $this->curl_get($url, $data, $header);
@@ -52,19 +55,15 @@ class Api extends  AbstractAPI
         //设置post方式提交
         curl_setopt($curl, CURLOPT_POST, 1);
         //设置post数据
-        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+        curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
         curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
-
         curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false); //不验证证书下同
         curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, false);
         //执行命令
         $json = curl_exec($curl);
-
         //关闭URL请求
         curl_close($curl);
-
         $result = json_decode($json, true);
-
         return $result;
     }
 
