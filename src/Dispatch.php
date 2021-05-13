@@ -14,8 +14,8 @@ class Dispatch extends Foundation
 {
 
     protected $providers = [
-        Member\Member::class,
-        AccessToken\ServiceProvider::class
+        AccessToken\ServiceProvider::class,
+        Member\Member::class
     ];
 
     public function createAuthorizer($authToken)
