@@ -15,5 +15,11 @@
     },
     "require": {
         "hanson/foundation-sdk": "^5.0"
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "http://git.phpfs.com/joyousphper/composer-demo.git"
+        }
+    ]
 }
