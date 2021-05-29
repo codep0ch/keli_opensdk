@@ -19,14 +19,14 @@ class ServiceProvider implements ServiceProviderInterface
     {
         $pimple['card'] = function ($pimple) {
             $config = $pimple->getConfig();
-            if(empty($config['Inner']) || !$config['Inner']){
+            if(!$pimple->inner){
                 $config['mch_id'] = '';
             }
-            if($config['Inner']){
+            if($pimple->inner){
                 $config['appId'] = '';
                 $config['appSecret'] = '';
             }
-            return new Card($config['mch_id'], $config['appId'], $config['appSecret'], $config['Inner']);
+            return new Card($config['mch_id'], $config['appId'], $config['appSecret'], $pimple->inner);
         };
     }
 }
