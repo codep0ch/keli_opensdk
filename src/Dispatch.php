@@ -9,6 +9,8 @@ use Hanson\Foundation\Foundation;
  * @package opensdk
  * @property \Keli\OpenSDK\Token\AccessToken    $access_token
  * @property \Keli\OpenSDK\Member\Member    $member
+ * @property \Keli\OpenSDK\Card\Card $card
+ * @property \Keli\OpenSDK\Pay\Pay $pay
  */
 class Dispatch extends Foundation
 {
