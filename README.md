@@ -11,7 +11,7 @@
 ### 内网调用配置
 | 参数    | 必填 | 示例 |
 | --------- | ---- | ---- |
-| mch_id     | 是  | 1 |
+| mch_id    | 是  | 1 |
 | debug     | 否  | true |
 
 ### 大纲
@@ -31,7 +31,7 @@ $dispatch = new \Keli\OpenSDK\Dispatch($configs);
 /**
  * 会员模块，查找用户信息示例
  */
-$userData = $dispatch->member->getMember('18591751341');
+$userData = $dispatch->Inner(true)->member->getMember('18591751341');
 if($userData['code'] == 200){
     echo '找到会员';
 }
