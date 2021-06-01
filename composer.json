@@ -14,9 +14,7 @@
         }
     },
     "require": {
-        "hanson/foundation-sdk": "^5.0",
-      "ext-http": "*",
-      "ext-curl": "*"
+        "hanson/foundation-sdk": "^5.0"
     },
     "repositories": [
         {
