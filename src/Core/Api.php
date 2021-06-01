@@ -13,10 +13,12 @@ class Api extends  AbstractAPI
     private $appId;
     private $appSecret;
     private $inner;
+    public $pimple;
     const API = 'http://api.kelimx.com/cgi-bin/';
     const INNER_API = 'http://inner.api.kelimx.com/cgi-bin/';
     public function __construct($pimple)
     {
+        $this->pimple = $pimple;
         $config = $pimple->getConfig();
         if(!$pimple->inner){
             $config['mch_id'] = '';
@@ -54,7 +56,7 @@ class Api extends  AbstractAPI
         }
     }
 
-    public function curl_post($url, $data = array(), $header = [])
+    private function curl_post($url, $data = array(), $header = [])
     {
         //初始化
         $curl = curl_init();
@@ -79,7 +81,7 @@ class Api extends  AbstractAPI
         return $result;
     }
 
-    public function curl_get($url, $data = array(), $header = [])
+    private function curl_get($url, $data = array(), $header = [])
     {
         //初始化
         $ch = curl_init();
