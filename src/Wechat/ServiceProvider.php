@@ -1,5 +1,5 @@
 <?php
-namespace Keli\OpenSDK\Pay;
+namespace Keli\OpenSDK\Wechat;
 
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
@@ -17,7 +17,7 @@ class ServiceProvider implements ServiceProviderInterface
      */
     public function register(Container $pimple)
     {
-        $pimple['Pay'] = function ($pimple) {
+        $pimple['wechat'] = function ($pimple) {
             return new Wechat($pimple);
         };
     }

@@ -8,18 +8,20 @@ use Hanson\Foundation\Foundation;
  * Class Dispatch
  * @package opensdk
  * @property \Keli\OpenSDK\Token\AccessToken    $access_token
-// * @property \Keli\OpenSDK\Member\Member    $member
+ * @property \Keli\OpenSDK\Member\Member    $member
  * @property \Keli\OpenSDK\Card\Card $card
-// * @property \Keli\OpenSDK\Pay\Pay $pay
+ * @property \Keli\OpenSDK\Pay\Pay $pay
+ * @property \Keli\OpenSDK\Wechat\Wechat $wechat
  */
 class Dispatch extends Foundation
 {
     public $inner = false;
     protected $providers = [
         Token\ServiceProvider::class, //Token公共服务 已完成
-        Member\ServiceProvider::class, //TODO 会员服务 待测试
-        Card\ServiceProvider::class, //TODO 卡券服务
-        Pay\ServiceProvider::class //TODO 支付服务
+        Member\ServiceProvider::class, //会员服务 已完成
+        Card\ServiceProvider::class, //卡券服务 已完成
+        Pay\ServiceProvider::class, //TODO 支付服务
+        Wechat\ServiceProvider::class //TODO 微信服务
     ];
 
     public function createAuthorizer($authToken)
