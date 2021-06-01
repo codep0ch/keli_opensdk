@@ -21,8 +21,8 @@ class Api extends  AbstractAPI
         $this->pimple = $pimple;
         $config = $pimple->getConfig();
 
-        if(!is_null($this->mch_id)){
-            $config['mch_id'] = $this->mch_id;
+        if(!is_null($pimple->mch_id)){
+            $config['mch_id'] = $pimple->mch_id;
         }
 
         $this->mch_id = empty($config['mch_id']) ? null : $config['mch_id'];
