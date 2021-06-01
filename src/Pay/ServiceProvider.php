@@ -17,7 +17,7 @@ class ServiceProvider implements ServiceProviderInterface
      */
     public function register(Container $pimple)
     {
-        $pimple['Pay'] = function ($pimple) {
+        $pimple['pay'] = function ($pimple) {
             return new Wechat($pimple);
         };
     }
