@@ -18,15 +18,7 @@ class ServiceProvider implements ServiceProviderInterface
     public function register(Container $pimple)
     {
         $pimple['card'] = function ($pimple) {
-            $config = $pimple->getConfig();
-            if(!$pimple->inner){
-                $config['mch_id'] = '';
-            }
-            if($pimple->inner){
-                $config['appId'] = '';
-                $config['appSecret'] = '';
-            }
-            return new Card($config['mch_id'], $config['appId'], $config['appSecret'], $pimple->inner);
+            return new Card($pimple);
         };
     }
 }

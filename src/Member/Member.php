@@ -13,7 +13,6 @@ class Member extends Api
     public function getMember(string $telephone){
         return $this->request('member/user/findUser',['user_telephone'=>$telephone]);
     }
-
     public function addTag(array $params){
         return $this->request('member/tag/addTag',$params);
     }
@@ -25,9 +24,6 @@ class Member extends Api
     public function delTag(array $params){
         return $this->request('member/tag/delTag',$params);
     }
-
-
-
     public function getChannel(array $params){
         return $this->request('member/channel/getChannel',$params);
     }

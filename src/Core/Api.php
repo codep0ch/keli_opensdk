@@ -15,13 +15,22 @@ class Api extends  AbstractAPI
     private $inner;
     const API = 'http://api.kelimx.com/cgi-bin/';
     const INNER_API = 'http://inner.api.kelimx.com/cgi-bin/';
-    public function __construct($mch_id = null, $appId, $appSecret, $inner = false)
+    public function __construct($pimple)
     {
-        $this->mch_id = $mch_id;
-        $this->appId = $appId;
-        $this->appSecret = $appSecret;
-        $this->inner = $inner;
-        if($inner && empty($mch_id)){
+        $config = $pimple->getConfig();
+        if(!$pimple->inner){
+            $config['mch_id'] = '';
+        }
+        if($pimple->inner){
+            $config['appId'] = '';
+            $config['appSecret'] = '';
+        }
+
+        $this->mch_id = $config['mch_id'];
+        $this->appId = $config['appId'];
+        $this->appSecret = $config['appSecret'];
+        $this->inner = $pimple->inner;
+        if($pimple->inner && empty($mch_id)){
             throw new \Exception('mch_id cannot be empty in Intranet mode');
         }
     }
