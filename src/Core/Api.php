@@ -30,7 +30,7 @@ class Api extends  AbstractAPI
         $this->appId = $config['appId'];
         $this->appSecret = $config['appSecret'];
         $this->inner = $pimple->inner;
-        if($pimple->inner && empty($mch_id)){
+        if($pimple->inner && empty($this->mch_id)){
             throw new \Exception('mch_id cannot be empty in Intranet mode');
         }
     }
