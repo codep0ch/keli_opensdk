@@ -16,6 +16,7 @@ use Hanson\Foundation\Foundation;
 class Dispatch extends Foundation
 {
     public $inner = false;
+    public $mch_id = null;
     protected $providers = [
         Token\ServiceProvider::class, //Token公共服务 已完成
         Member\ServiceProvider::class, //会员服务 已完成
@@ -30,6 +31,15 @@ class Dispatch extends Foundation
         return $this;
     }
 
+    /**
+     * 修改当前对象的mch_id
+     * @param $mch_id
+     * @return $this
+     */
+    public function setMchId($mch_id){
+        $this->mch_id = $mch_id;
+        return $this;
+    }
     /**
      * 判断当前调用方式是否属于内网
      * @return bool
