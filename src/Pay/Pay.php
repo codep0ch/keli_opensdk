@@ -64,9 +64,8 @@ class Pay extends Api
      * @param String $notify_url
      * @param String $attach
      * @param String $time_expire
-     * @return mixed
      */
-    public function wechat_pay_miniProgram(String $out_trade_no, String $wechat_sub_mch_id, String $body, Int $total_fee, String $notify_url, String $attach, String $time_expire): mixed
+    public function wechat_pay_miniProgram(String $out_trade_no, String $wechat_sub_mch_id, String $body, Int $total_fee, String $notify_url, String $attach, String $time_expire)
     {
         return $this->request('pay/wechatPay/pay/miniProgram',[
             'out_trade_no' => $out_trade_no,
