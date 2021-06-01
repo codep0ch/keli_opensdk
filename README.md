@@ -28,10 +28,11 @@ $configs = [
     'mch_id' => 31
 ];
 $dispatch = new \Keli\OpenSDK\Dispatch($configs);
+$dispatch->inner = true;
 /**
  * 会员模块，查找用户信息示例
  */
-$userData = $dispatch->Inner(true)->member->getMember('18591751341');
+$userData = $dispatch->member->getMember('18591751341');
 if($userData['code'] == 200){
     echo '找到会员';
 }

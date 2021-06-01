@@ -30,11 +30,10 @@ class Dispatch extends Foundation
         return $this;
     }
 
-    public function Inner($bool = true){
-        $this->inner = $bool;
-        return $this;
-    }
-
+    /**
+     * 判断当前调用方式是否属于内网
+     * @return bool
+     */
     public function getInner(){
         return $this->inner;
     }
