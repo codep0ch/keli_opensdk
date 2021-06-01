@@ -17,6 +17,7 @@ class Dispatch extends Foundation
 {
     public $inner = false;
     public $mch_id = null;
+    public $sync = true;
     protected $providers = [
         Token\ServiceProvider::class, //Token公共服务 已完成
         Member\ServiceProvider::class, //会员服务 已完成
@@ -28,6 +29,16 @@ class Dispatch extends Foundation
     public function createAuthorizer($authToken)
     {
         $this->access_token->setAuthToken($authToken);
+        return $this;
+    }
+
+    /**
+     * 设置sdk请求运行模式
+     * @param $bool
+     * @return $this
+     */
+    public function setSync($bool){
+        $this->sync = $bool;
         return $this;
     }
 

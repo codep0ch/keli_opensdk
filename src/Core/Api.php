@@ -45,26 +45,32 @@ class Api extends  AbstractAPI
                 'x-access-token:'.$accessToken->getToken()
             ];
         }
-        if($method=='post'){
+        if($this->pimple->sync){
             $header[] = 'Content-Type: application/json; charset=utf-8';
-            return $this->curl_post($url, $data, $header);
-        }else{
-            return $this->curl_get($url, $data, $header);
+            return $this->curl($url, $data, $header,$method);
         }
+
     }
 
-    private function curl_post($url, $data = array(), $header = [])
+    private function curl($url, $data = array(), $header = [], $method = 'post')
     {
         //初始化
         $curl = curl_init();
+        if($method == 'get'){
+            $query = http_build_query($data);
+            $url = $url . '?' . $query;
+        }
         //设置抓取的url
         curl_setopt($curl, CURLOPT_URL, $url);
         //设置头文件的信息作为数据流输出
         curl_setopt($curl, CURLOPT_HEADER, 0);
         //设置获取的信息以文件流的形式返回，而不是直接输出。
+
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-        //设置post方式提交
-        curl_setopt($curl, CURLOPT_POST, 1);
+        if($method == 'post'){
+            //设置post方式提交
+            curl_setopt($curl, CURLOPT_POST, 1);
+        }
         //设置post数据
         curl_setopt($curl, CURLOPT_POSTFIELDS, json_encode($data));
         curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
@@ -75,26 +81,6 @@ class Api extends  AbstractAPI
         //关闭URL请求
         curl_close($curl);
         $result = json_decode($json, true);
-        return $result;
-    }
-
-    private function curl_get($url, $data = array(), $header = [])
-    {
-        //初始化
-        $ch = curl_init();
-        //设置选项，包括URL
-        $query = http_build_query($data);
-        $url = $url . '?' . $query;
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-        //执行并获取HTML文档内容
-        $output = curl_exec($ch);
-        //释放curl句柄
-        curl_close($ch);
-
-        $result = json_decode($output, true);
         return $result;
     }
 
