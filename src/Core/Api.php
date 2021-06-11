@@ -4,7 +4,7 @@ namespace Keli\OpenSDK\Core;
 use Hanson\Foundation\AbstractAPI;
 use Keli\OpenSDK\Token\AccessToken;
 
-class Api extends  AbstractAPI
+class Api extends AbstractAPI
 {
     /**
      * @var AccessToken
@@ -47,7 +47,10 @@ class Api extends  AbstractAPI
         }
         if($this->pimple->sync){
             $header[] = 'Content-Type: application/json; charset=utf-8';
-            return $this->curl($url, $data, $header,$method);
+            return $this->curl($url, $data, $header, $method);
+        }else{
+            //TODO swoole非阻塞请求
+
         }
 
     }
