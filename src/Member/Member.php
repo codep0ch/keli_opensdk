@@ -102,6 +102,17 @@ class Member extends Api
     }
 
     /**
+     * 查询积分流水
+     * @param String $card_no
+     * @return mixed
+     */
+    public function logScore(String $card_no){
+        return $this->request('member/score/logScore',[
+            'card_no' => $card_no
+        ]);
+    }
+
+    /**
      * 查询积分
      * @param String $card_no
      * @return mixed
