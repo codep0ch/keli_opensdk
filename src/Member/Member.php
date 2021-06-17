@@ -129,10 +129,11 @@ class Member extends Api
      * @param Int $score
      * @return mixed
      */
-    public function increaseScore(String $card_no, Int $score){
+    public function increaseScore(String $card_no, Int $score, Int $channel_id = null){
         return $this->request('member/score/increaseScore',[
             'card_no' => $card_no,
-            'score' => $score
+            'score' => $score,
+            'channel_id' => $channel_id
         ]);
     }
 
@@ -142,10 +143,11 @@ class Member extends Api
      * @param Int $score
      * @return mixed
      */
-    public function deductionScore(String $card_no, Int $score){
+    public function deductionScore(String $card_no, Int $score, Int $channel_id = null){
         return $this->request('member/score/deductionScore',[
             'card_no' => $card_no,
-            'score' => $score
+            'score' => $score,
+            'channel_id' => $channel_id
         ]);
     }
 
