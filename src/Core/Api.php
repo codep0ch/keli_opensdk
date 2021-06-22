@@ -51,6 +51,7 @@ class Api extends AbstractAPI
         if(strtolower($method) == 'GET'){
             $url .= "?".http_build_query($data);
         }
+        var_dump($this->debug);
         try {
             $result = self::$client->request($method, $url, [
                 'headers' => $headers,
@@ -58,6 +59,7 @@ class Api extends AbstractAPI
             ]);
             return $this->debug ? $result : $result->getBody()->getContents();
         }catch (\Exception $e){
+            if($this->debug) throw $e;
             return $e->getMessage();
         }
 
