@@ -36,7 +36,7 @@ class Vehicle extends Api
      * @param String|null $profit_sharing
      * @return mixed
      */
-    public function editUser(String $body, String $out_trade_no , String $total_fee, String $notify_url, String $trade_type, String $trade_scene,Array $scene_info,
+    public function payApply(String $body, String $out_trade_no , String $total_fee, String $notify_url, String $trade_type, String $trade_scene,Array $scene_info,
                                  String $detail = null, String $attach = null, String $fee_type = null, $spbill_create_ip = null, $openid = null, String $profit_sharing = null){
         return $this->request('vehicle/api/payApply', [
             'body'  => $body,
