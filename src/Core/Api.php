@@ -36,25 +36,28 @@ class Api extends AbstractAPI
         self::$client =  new \GuzzleHttp\Client();
     }
     function request($url,$data = array(),$method='post'){
-        $header = [];
+        $headers = [];
         if($this->inner){
             $url = self::INNER_API.$url;
             $data['mch_id'] = $this->mch_id;
         }else{
             $accessToken = new AccessToken($this->mch_id, $this->appId,$this->appSecret, $this->inner);
             $url = self::API.$url;
-            $header = [
-                'x-access-token:'.$accessToken->getToken()
-            ];
+            $headers['x-access-token'] = $accessToken->getToken();
         }
-        $header[] = 'Content-Type: application/json; charset=utf-8';
+        $headers['Content-Type'] = 'application/json; charset=utf-8';
         if(strtolower($method) == 'GET'){
             $url .= "?".http_build_query($data);
         }
-        return self::$client->request($method, $url, [
-            'headers' => $header,
-            'json'    => $data
-        ])->getBody()->getContents();
+        try {
+            return self::$client->request($method, $url, [
+                'headers' => $headers,
+                'json'    => $data
+            ])->getBody()->getContents();
+        }catch (\Exception $e){
+            return $e->getMessage();
+        }
+
     }
 
 }
