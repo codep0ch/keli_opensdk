@@ -10,6 +10,7 @@ use Keli\OpenSDK\Core\Api;
 
 class AccessToken extends AbstractAccessToken
 {
+    protected static $client;
 
     protected $mch_id;
 
@@ -29,6 +30,7 @@ class AccessToken extends AbstractAccessToken
         $this->appId = $appId;
         $this->secret = $appSecret;
         $this->inner = $inner;
+        self::$client =  new \GuzzleHttp\Client();
     }
 
     public function setAuthToken($authToken)
@@ -53,21 +55,13 @@ class AccessToken extends AbstractAccessToken
         $x_auth_token = $this->cache->fetch("x-access-token-{$this->mch_id}");
         if(empty($x_auth_token)){
             //初始化
-            $ch = curl_init();
-            //设置选项，包括URL
-            curl_setopt($ch, CURLOPT_URL, $api);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_HEADER, 0);
-            //执行并获取HTML文档内容
-            $output = curl_exec($ch);
-            //释放curl句柄
-            curl_close($ch);
-
-            $result = json_decode($output, true);
-            if($result['code'] == 400){
-                throw new \Exception($result['msg']);
+            $result = self::$client->request('get', $api)->getBody()->getContents();
+            var_dump($result);
+            $resultArray = json_decode($result, true);
+            if($resultArray['code'] == 400){
+                throw new \Exception($resultArray['msg']);
             }
-            $x_auth_token = $result['result']['access_token'];
+            $x_auth_token = $resultArray['result']['access_token'];
             $this->cache->save("x-access-token-{$this->mch_id}", $x_auth_token,7000);
         }
         return ['access_token' => $x_auth_token];
