@@ -54,7 +54,7 @@ class Api extends AbstractAPI
         return self::$client->request($method, $url, [
             'headers' => $header,
             'json'    => $data
-        ])->getBody();
+        ])->getBody()->getContents();
     }
 
 }
