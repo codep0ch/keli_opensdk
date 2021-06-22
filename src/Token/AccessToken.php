@@ -56,7 +56,6 @@ class AccessToken extends AbstractAccessToken
         if(empty($x_auth_token)){
             //初始化
             $result = self::$client->request('get', $api)->getBody()->getContents();
-            var_dump($result);
             $resultArray = json_decode($result, true);
             if($resultArray['code'] == 400){
                 throw new \Exception($resultArray['msg']);
