@@ -51,7 +51,6 @@ class Api extends AbstractAPI
         if(strtolower($method) == 'GET'){
             $url .= "?".http_build_query($data);
         }
-        var_dump($this->debug);
         try {
             $result = self::$client->request($method, $url, [
                 'headers' => $headers,
