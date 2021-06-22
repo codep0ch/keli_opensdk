@@ -1,5 +1,5 @@
 <?php
-namespace Keli\OpenSDK\Member;
+namespace Keli\OpenSDK\Vehicle;
 
 
 use Pimple\Container;
