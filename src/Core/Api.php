@@ -15,6 +15,7 @@ class Api extends AbstractAPI
     private $appSecret;
     private $inner;
     public $pimple;
+    private $debug;
     const API = 'http://api.kelimx.com/cgi-bin/';
     const INNER_API = 'http://inner.api.kelimx.com/cgi-bin/';
     public function __construct($pimple)
@@ -26,6 +27,7 @@ class Api extends AbstractAPI
             $config['mch_id'] = $pimple->mch_id;
         }
 
+        $this->debug = $pimple->debug;
         $this->mch_id = empty($config['mch_id']) ? null : $config['mch_id'];
         $this->appId = empty($config['appId']) ? null : $config['appId'];
         $this->appSecret = empty($config['appSecret']) ? null : $config['appSecret'];
@@ -50,10 +52,11 @@ class Api extends AbstractAPI
             $url .= "?".http_build_query($data);
         }
         try {
-            return self::$client->request($method, $url, [
+            $result = self::$client->request($method, $url, [
                 'headers' => $headers,
                 'json'    => $data
-            ])->getBody()->getContents();
+            ]);
+            return $this->debug ? $result : $result->getBody()->getContents();
         }catch (\Exception $e){
             return $e->getMessage();
         }
