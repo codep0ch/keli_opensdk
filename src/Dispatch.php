@@ -8,10 +8,11 @@ use Hanson\Foundation\Foundation;
  * Class Dispatch
  * @package opensdk
  * @property \Keli\OpenSDK\Token\AccessToken    $access_token
- * @property \Keli\OpenSDK\Member\Vehicle    $member
+ * @property \Keli\OpenSDK\Member\Member    $member
  * @property \Keli\OpenSDK\Card\Card $card
  * @property \Keli\OpenSDK\Pay\Pay $pay
  * @property \Keli\OpenSDK\Wechat\Wechat $wechat
+ * @property \Keli\OpenSDK\Vehicle\Vehicle $vehicle
  */
 class Dispatch extends Foundation
 {
@@ -23,7 +24,7 @@ class Dispatch extends Foundation
         Card\ServiceProvider::class, //卡券服务 已完成
         Pay\ServiceProvider::class, //支付服务
         Wechat\ServiceProvider::class, //微信服务
-        Vehicle\ServiceProvider::class //微信服务
+        Vehicle\ServiceProvider::class //车主服务
     ];
 
     public function createAuthorizer($authToken)
