@@ -19,7 +19,7 @@ class ServiceProvider implements ServiceProviderInterface
     public function register(Container $pimple)
     {
         $pimple['member'] = function ($pimple) {
-            return new Vehicle($pimple);
+            return new Member($pimple);
         };
     }
 }
