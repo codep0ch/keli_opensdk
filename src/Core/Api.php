@@ -27,7 +27,7 @@ class Api extends AbstractAPI
             $config['mch_id'] = $pimple->mch_id;
         }
 
-        $this->debug = $pimple->debug;
+        $this->debug = $config['debug'];
         $this->mch_id = empty($config['mch_id']) ? null : $config['mch_id'];
         $this->appId = empty($config['appId']) ? null : $config['appId'];
         $this->appSecret = empty($config['appSecret']) ? null : $config['appSecret'];
